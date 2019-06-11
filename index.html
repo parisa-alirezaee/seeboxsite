@@ -2,10 +2,10 @@
 <button id="connect"> Connect </button>
 
 <button id="play"> Find my Seeebox </button>
-<!-- <button id="mute"> Mute </button>
+<button id="mute"> Mute </button>
 <button id="volup"> Volume Up </button>
 <button id="voldown"> Volume Down </button>
-<button id="change"> Change Track </button> -->
+<button id="change"> Change Track </button>
 
 
 <script>
@@ -15,7 +15,7 @@ var charact;
 
 document.getElementById("connect").addEventListener('pointerup', function(event) {
 // bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
-bluetooth.requestDevice({acceptAllDevices: true})
+navigator.bluetooth.requestDevice({acceptAllDevices: true})
 .then(device => {
     console.log('Connecting to GATT Server...');
     bluetoothDevice = device;
