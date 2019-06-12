@@ -54,7 +54,7 @@ navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e
 })
 
 
-document.getElementById("play").addEventListener('pointerup', function(event) {
+document.getElementById("play").addEventListener('click', function(event) {
 charact.forEach(characteristic => {
     charact.forEach(characteristic => {
           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
@@ -66,7 +66,7 @@ charact.forEach(characteristic => {
     })
 
 
-document.getElementById("mute").addEventListener('pointerup', function(event) {
+document.getElementById("mute").addEventListener('click', function(event) {
 charact.forEach(characteristic => {
     charact.forEach(characteristic => {
           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
@@ -79,7 +79,7 @@ charact.forEach(characteristic => {
 
 
 
-document.getElementById("volup").addEventListener('pointerup', function(event) {
+document.getElementById("volup").addEventListener('click', function(event) {
 charact.forEach(characteristic => {
     charact.forEach(characteristic => {
           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
@@ -92,7 +92,7 @@ charact.forEach(characteristic => {
 
 
 
-document.getElementById("voldown").addEventListener('pointerup', function(event) {
+document.getElementById("voldown").addEventListener('click', function(event) {
 charact.forEach(characteristic => {
     charact.forEach(characteristic => {
           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
@@ -103,7 +103,7 @@ charact.forEach(characteristic => {
       });
     })
 
-document.getElementById("change").addEventListener('pointerup', function(event) {
+document.getElementById("change").addEventListener('click', function(event) {
 charact.forEach(characteristic => {
     charact.forEach(characteristic => {
           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
