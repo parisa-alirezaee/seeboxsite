@@ -13,16 +13,18 @@
 var enc = new TextEncoder(); // always utf-8
 var charact;
 
-document.getElementById("connect").addEventListener('pointerup', function(event) { //change this to 'click'
+document.getElementById("connect").addEventListener('click', function(event) { //change this to 'click'
 navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
-.then(device => {
-    bluetoothDevice = device;
-    return bluetoothDevice.gatt.connect();
-})
+
+  .then(device => {
+      bluetoothDevice = device;
+      return bluetoothDevice.gatt.connect();
+  })
 
   .then(server => server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e'))
 
   .then(service => service.getCharacteristic('6e400002-b5a3-f393-e0a9-e50e24dcca9e'))
+
   .then(characteristic => {
     var valuu = enc.encode('P');
     return characteristic.writeValue(valuu);
