@@ -11,10 +11,10 @@
 <script>
 
 var enc = new TextEncoder(); // always utf-8
-var charact;
+var charactt;
 
-document.getElementById("connect").addEventListener('click', function(event) { //change this to 'click'
-navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
+  document.getElementById("connect").addEventListener('pointerup', function(event) { //change this to 'click'
+  navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
 
   .then(device => {
       bluetoothDevice = device;
@@ -25,12 +25,29 @@ navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e
 
   .then(service => service.getCharacteristic('6e400002-b5a3-f393-e0a9-e50e24dcca9e'))
 
+
   .then(characteristic => {
-    var valuu = enc.encode('P');
+    charactt = characteristic;
+    var valuu = enc.encode('U');
     return characteristic.writeValue(valuu);
   })
 
+  // .then(characteristic => {
+  //   var valuu = enc.encode('P');
+  //   return characteristic.writeValue(valuu);
+  // })
+
 });
+
+document.getElementById("play").addEventListener('click', function(event) { 
+    var valuu = enc.encode('P');
+    return charactt.writeValue(valuu);
+})
+
+document.getElementById("mute").addEventListener('click', function(event) { 
+    var valuu = enc.encode('M');
+    return charactt.writeValue(valuu);
+})
 
 
 // .then(server => {
@@ -90,11 +107,7 @@ navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e
 //       });
 //     })
 
-document.getElementById("mute").addEventListener('pointerup', function(event) {
 
-
-
-});
 
 
 
