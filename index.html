@@ -13,115 +13,132 @@
 var enc = new TextEncoder(); // always utf-8
 var charact;
 
-
-
-document.getElementById("connect").addEventListener('click', function(event) {
-navigator.bluetooth.requestDevice({ filters: [{ services: ['6E400001-B5A3-F393-E0A9-E50E24DCCA9E'] }] })
-// navigator.bluetooth.requestDevice({acceptAllDevices: true})
+document.getElementById("connect").addEventListener('pointerup', function(event) { //change this to 'click'
+navigator.bluetooth.requestDevice({ filters: [{ services: ['6e400001-b5a3-f393-e0a9-e50e24dcca9e'] }] })
 .then(device => {
-    console.log('Connecting to GATT Server...');
     bluetoothDevice = device;
     return bluetoothDevice.gatt.connect();
 })
-.then(server => {
-    console.log('Getting Device Services...');
-    return server.getPrimaryService('6E400001-B5A3-F393-E0A9-E50E24DCCA9E');
-})
 
-.then(services => {
-  let queue = Promise.resolve();
-    services.forEach(service => {
-      queue = queue.then(_ => service.getCharacteristics().then(characteristics => {
-        console.log('> Service: ' + service.uuid);
-        charact = characteristics;
-        // charact.forEach(characteristic => {
-        //   console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-        //       getSupportedProperties(characteristic));
-        //   var valuu = enc.encode('P');
-        //   return characteristic.writeValue(valuu);
-        // });
-      }));
-    });
-    return queue;
-})
-// .then(characteristic => {
-//   // Reading Battery Level...
-//   console.log(characteristic.uuid);
-//   return characteristic.writeValue('P');
+  .then(server => server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e'))
+
+  .then(service => service.getCharacteristic('6e400002-b5a3-f393-e0a9-e50e24dcca9e'))
+  .then(characteristic => {
+    var valuu = enc.encode('P');
+    return characteristic.writeValue(valuu);
+  })
+
+});
+
+
+// .then(server => {
+//     console.log('Getting Device Services...');
+//     server.getPrimaryService('6e400001-b5a3-f393-e0a9-e50e24dcca9e');
 // })
 
-.catch(error => { console.log(error); });
-})
-
-
-document.getElementById("play").addEventListener('click', function(event) {
-charact.forEach(characteristic => {
-    charact.forEach(characteristic => {
-          console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-              getSupportedProperties(characteristic));
-          var valuu = enc.encode('P');
-          return characteristic.writeValue(valuu);
-        });
-      });
-    })
-
-
-document.getElementById("mute").addEventListener('click', function(event) {
-charact.forEach(characteristic => {
-    charact.forEach(characteristic => {
-          console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-              getSupportedProperties(characteristic));
-          var valuu = enc.encode('M');
-          return characteristic.writeValue(valuu);
-        });
-      });
-    })
+// .then(service => {
+//   let queue = Promise.resolve();
+//     services.forEach(service => {
+//       queue = queue.then(_ => service.getCharacteristics().then(characteristics => {
+//         console.log('> Service: ' + service.uuid);
+//         charact = characteristics;
+//         // charact.forEach(characteristic => {
+//         //   console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//         //       getSupportedProperties(characteristic));
+//         //   var valuu = enc.encode('P');
+//         //   return characteristic.writeValue(valuu);
+//         // });
+//       }));
+//     });
+//     return queue;
+// })
 
 
 
-document.getElementById("volup").addEventListener('click', function(event) {
-charact.forEach(characteristic => {
-    charact.forEach(characteristic => {
-          console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-              getSupportedProperties(characteristic));
-          var valuu = enc.encode('U');
-          return characteristic.writeValue(valuu);
-        });
-      });
-    })
+// // .then(characteristic => {
+// //   // Reading Battery Level...
+// //   console.log(characteristic.uuid);
+// //   return characteristic.writeValue('P');
+// // })
+
+// .catch(error => { console.log(error); });
+// })
+
+
+// document.getElementById("play").addEventListener('pointerup', function(event) {
+// charact.forEach(characteristic => {
+//     charact.forEach(characteristic => {
+//           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//               getSupportedProperties(characteristic));
+//           var valuu = enc.encode('P');
+//           return characteristic.writeValue(valuu);
+//         });
+//       });
+//     })
+
+
+// document.getElementById("mute").addEventListener('pointerup', function(event) {
+// charact.forEach(characteristic => {
+//     charact.forEach(characteristic => {
+//           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//               getSupportedProperties(characteristic));
+//           var valuu = enc.encode('M');
+//           return characteristic.writeValue(valuu);
+//         });
+//       });
+//     })
+
+document.getElementById("mute").addEventListener('pointerup', function(event) {
 
 
 
-document.getElementById("voldown").addEventListener('click', function(event) {
-charact.forEach(characteristic => {
-    charact.forEach(characteristic => {
-          console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-              getSupportedProperties(characteristic));
-          var valuu = enc.encode('D');
-          return characteristic.writeValue(valuu);
-        });
-      });
-    })
-
-document.getElementById("change").addEventListener('click', function(event) {
-charact.forEach(characteristic => {
-    charact.forEach(characteristic => {
-          console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
-              getSupportedProperties(characteristic));
-          var valuu = enc.encode('C');
-          return characteristic.writeValue(valuu);
-        });
-      });
-    })
+});
 
 
-function getSupportedProperties(characteristic) {
-  let supportedProperties = [];
-  for (const p in characteristic.properties) {
-    if (characteristic.properties[p] === true) {
-      supportedProperties.push(p.toUpperCase());
-    }
-  }
-  return '[' + supportedProperties.join(', ') + ']';
-}
+
+// document.getElementById("volup").addEventListener('pointerup', function(event) {
+// charact.forEach(characteristic => {
+//     charact.forEach(characteristic => {
+//           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//               getSupportedProperties(characteristic));
+//           var valuu = enc.encode('U');
+//           return characteristic.writeValue(valuu);
+//         });
+//       });
+//     })
+
+
+
+// document.getElementById("voldown").addEventListener('pointerup', function(event) {
+// charact.forEach(characteristic => {
+//     charact.forEach(characteristic => {
+//           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//               getSupportedProperties(characteristic));
+//           var valuu = enc.encode('D');
+//           return characteristic.writeValue(valuu);
+//         });
+//       });
+//     })
+
+// document.getElementById("change").addEventListener('pointerup', function(event) {
+// charact.forEach(characteristic => {
+//     charact.forEach(characteristic => {
+//           console.log('>> Characteristic: ' + characteristic.uuid + ' ' +
+//               getSupportedProperties(characteristic));
+//           var valuu = enc.encode('C');
+//           return characteristic.writeValue(valuu);
+//         });
+//       });
+//     })
+
+
+// function getSupportedProperties(characteristic) {
+//   let supportedProperties = [];
+//   for (const p in characteristic.properties) {
+//     if (characteristic.properties[p] === true) {
+//       supportedProperties.push(p.toUpperCase());
+//     }
+//   }
+//   return '[' + supportedProperties.join(', ') + ']';
+// }
 </script>
