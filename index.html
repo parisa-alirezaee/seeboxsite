@@ -1,11 +1,10 @@
 
-<button id="connect"> Connect </button>
-
-<button id="play"> Find my Seeebox </button>
-<button id="mute"> Mute </button>
-<button id="volup"> Volume Up </button>
-<button id="voldown"> Volume Down </button>
-<button id="change"> Change Track </button>
+<button id="connect" style="height: 50px; margin: 20px"> Connect </button><br>
+<button id="play" style="height: 50px; margin: 20px"> Find my Seeebox </button><br>
+<button id="mute" style="height: 50px; margin: 20px"> Mute </button><br>
+<button id="volup" style="height: 50px; margin: 20px"> Volume Up </button>
+<button id="voldown" style="height: 50px; margin: 20px"> Volume Down </button><br>
+<button id="change" style="height: 50px; margin: 20px"> Change Track </button>
 
 
 <script>
@@ -28,7 +27,7 @@ var charactt;
 
   .then(characteristic => {
     charactt = characteristic;
-    var valuu = enc.encode('U');
+    var valuu = enc.encode('U'); //welcome message
     return characteristic.writeValue(valuu);
   })
 
@@ -46,6 +45,21 @@ document.getElementById("play").addEventListener('click', function(event) {
 
 document.getElementById("mute").addEventListener('click', function(event) { 
     var valuu = enc.encode('M');
+    return charactt.writeValue(valuu);
+})
+
+document.getElementById("volup").addEventListener('click', function(event) { 
+    var valuu = enc.encode('U');
+    return charactt.writeValue(valuu);
+})
+
+document.getElementById("voldown").addEventListener('click', function(event) { 
+    var valuu = enc.encode('D');
+    return charactt.writeValue(valuu);
+})
+
+document.getElementById("change").addEventListener('click', function(event) { 
+    var valuu = enc.encode('C');
     return charactt.writeValue(valuu);
 })
 
