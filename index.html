@@ -8,7 +8,6 @@
 
 
 <script>
-console.log("hello");
 var enc = new TextEncoder(); // always utf-8
 var charactt;
 
@@ -27,7 +26,7 @@ var charactt;
 
   .then(characteristic => {
     charactt = characteristic;
-    var valuu = enc.encode('U'); //welcome message
+    var valuu = enc.encode('C'); //welcome message
     return characteristic.writeValue(valuu);
   })
 
@@ -40,31 +39,26 @@ var charactt;
 
 document.getElementById("play").addEventListener('click', function(event) { 
     var valuu = enc.encode('P');
-    console.log(valuu);
     return charactt.writeValue(valuu);
 })
 
 document.getElementById("mute").addEventListener('click', function(event) { 
     var valuu = enc.encode('M');
-    console.log(valuu + " sent");
     return charactt.writeValue(valuu);
 })
 
 document.getElementById("volup").addEventListener('click', function(event) { 
-    var valuu = enc.encode('u');
-    console.log(valuu + " sent");
+    var valuu = enc.encode('U');
     return charactt.writeValue(valuu);
 })
 
 document.getElementById("voldown").addEventListener('click', function(event) { 
-    var valuu = enc.encode('d');
-    console.log(valuu + " sent");
+    var valuu = enc.encode('D');
     return charactt.writeValue(valuu);
 })
 
 document.getElementById("change").addEventListener('click', function(event) { 
-    var valuu = enc.encode('c');
-    console.log(valuu + " sent");
+    var valuu = enc.encode('C');
     return charactt.writeValue(valuu);
 })
 
